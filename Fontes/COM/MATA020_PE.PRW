@@ -3,7 +3,7 @@
 #Include "FWMVCDEF.ch"
 
 #INCLUDE "PROTHEUS.CH"
-
+// FUNÇÃO CUSTOMER VENDOR
 User Function CUSTOMERVENDOR()
 	Local aParam     := PARAMIXB
 	Local xRet       := .T.
