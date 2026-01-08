@@ -3,13 +3,14 @@
 #INCLUDE "TOPCONN.CH"
 
 User Function MT100TOK()
-    Local lRet 		:= .T.
-    Local nPosItem	:= aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_ITEM"})
-    Local nPosConta	:= aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_CONTA"})
-    Local nPosCC	:= aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_CC"})
-    Local nPosTes   := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_TES"})
-    Local nPosCod	:= aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_COD"}) 
-    Local cCTTXTIPO := "" 
+    Local lRet       := .T.
+    Local nPosItem   := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_ITEM"})
+    Local nPosConta  := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_CONTA"})
+    Local nPosCC     := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_CC"})
+    Local nPosRateio := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_RATEIO"})
+    Local nPosTes    := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_TES"})
+    Local nPosCod    := aScan(aHeader,{|x| Upper(Alltrim(x[2]))=="D1_COD"})
+    Local cCTTXTIPO  := ""
     Local nn         := 0
     Local cConta     := ""
 
@@ -35,7 +36,7 @@ User Function MT100TOK()
 				If SF4->F4_X_CTB=="S" 
 
                     //Se não movimentar estoque, obriga o centro de custos
-                    If SF4->F4_ESTOQUE <> "S" .AND. Empty(aCols[nn,nPosCC])
+                    If SF4->F4_ESTOQUE <> "S" .AND. (Empty(aCols[nn,nPosCC]) .AND. aCols[nn,nPosRateio] == '2')
                         MsgAlert("TES não movimenta estoque ("+aCols[nn,nPosTes]+"). Obrigatório a informação de centro de custos para o item " + AllTrim(aCols[nn,nPosItem]),"Informar Centro de Custos")
                         Return .F.
                     EndIf
