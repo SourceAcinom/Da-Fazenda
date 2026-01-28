@@ -17,6 +17,7 @@ User Function MA410MNU()
     AAdd(aRotina,{"* NFE SEFAZ","SPEDNFE" , 0 , 5,0,NIL})
     aAdd(aRotina,{"* Impressao P.V.","U_LATFAR02()",0,7,0, nil} )
     aAdd(aRotina,{"* Ordem Carregamento","U_LATFAR01()",0,7,0, nil} )
+    aAdd(aRotina,{"* Altera Peso e Volume","U_DFFATM01()",0,7,0, nil} )
 
     RestArea(aArea)
 Return

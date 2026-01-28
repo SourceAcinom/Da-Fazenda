@@ -27,8 +27,17 @@
 	"lastPrograms": [
 		{
 			"label": "SIGACOM"
+		},
+		{
+			"label": "SIGACFG"
+		},
+		{
+			"label": "SIGAMDI"
+		},
+		{
+			"label": "SIGAFAT"
 		}
 	],
-	"lastProgramExecuted": "SIGACOM",
+	"lastProgramExecuted": "SIGAMDI",
 	"lastProgramArguments": []
 }

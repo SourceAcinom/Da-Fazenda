@@ -3,6 +3,7 @@
 #INCLUDE "COLORS.CH"
 #INCLUDE "RPTDEF.CH"
 #INCLUDE "FWPrintSetup.ch"
+#INCLUDE "TOPCONN.CH"
 
 #DEFINE IMP_SPOOL 2
 
@@ -56,6 +57,7 @@ User Function PrtNfeSef(cIdEnt, cVal1		, cVal2		, oDanfe,;
 	local cProg		:= iif(existBlock("DANFEProc"),"U_DANFEProc","DANFEProc")
 	local cNaoImp	:= ""	//Mensagem para as Notas não impressas do Modelo "65- NFCE" pela Rotina SPEDNFE
 	local cNfceMens	:= ""	//Mensagem para as Notas não impressas do Modelo "65- NFCE" pela Rotina SPEDNFE
+	Local cQuery    := ""
 
 	Default lIsLoja	:= .F.	//indica se foi chamado de alguma rotina do SIGALOJA
 	Default nTipo	:= 0
@@ -128,6 +130,7 @@ User Function PrtNfeSef(cIdEnt, cVal1		, cVal2		, oDanfe,;
 		EndIf
 
 		If lExistNFe
+			u_THFATBOL(MV_PAR01, MV_PAR02, MV_PAR03) // Chamada da função gera boleto
 			oDanfe:Preview()//Visualiza antes de imprimir
 		Else
 			if !lIsLoja .and. !lJob
@@ -618,7 +621,7 @@ User Function DANFEProc(	oDanfe	, lEnd		, cIdEnt	, cVal1,;
 							cNaoAut += SubStr(aNotas[nX][04],1,3)+aNotas[nX][05]+CRLF
 						EndIf
 
-						gerabol(aNotas[nX][4],aNotas[nX][5],nFaturas,aFaturas,oDanfe)
+						// gerabol(aNotas[nX][4],aNotas[nX][5],nFaturas,aFaturas,oDanfe)
 					EndIf
 
 				Next nX
